@@ -298,11 +298,87 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(height: 3,),
+                      
                       Container(
-                        height: 344,
+                        height: 345,
                         width: double.infinity,
-                        //color: Colors.redAccent,
-                        child: ,
+                        //color: Colors.amber,
+                        child: ListView.builder(
+                          itemExtent: 220,
+                          itemCount: _category.length,
+                          itemBuilder: (BuildContext context, int index){
+                            return GestureDetector(
+                              child: Card(
+                                margin: EdgeInsets.fromLTRB(24, 16, 24, 8),
+                                elevation: 4.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                clipBehavior: Clip.antiAlias,
+                                child: Stack(
+                                   children: <Widget>[
+                                     Hero(
+                                       tag: 'background' + _category[index].fName,
+                                       child: Container(
+                                         color: _category[index].materialCol,
+                                       ),
+                                     ),
+                                     Positioned(
+                                       top: 0,
+                                       right: 0,
+                                       left: 0,
+                                       child: Hero(
+                                         tag: 'image' + _category[index].fName,
+                                         child: Image.asset(_category[index].food,
+                                         fit: BoxFit.fitWidth, height: 120,),
+                                       ),
+                                     ),
+                                     Positioned(
+                                       top: 130,
+                                       //right: 96,
+                                       left: 32,
+                                       width: _screenWidthAdjustment,
+                                       child: Hero(
+                                         tag: 'text' + _category[index].fName,
+                                         child: Material(
+                                           color: Colors.transparent,
+                                           child: Text(
+                                             '${_category[index].fName}',
+                                             style: TextStyle(
+                                               fontSize: 20,
+                                               fontWeight: FontWeight.bold,
+                                               color: _category[index].materialCol.shade900,
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                     ),
+                                     Positioned(
+                                       top: 155,
+                                       left: 32,
+                                       width: _screenWidthAdjustment,
+                                       child: Hero(
+                                         tag: 'money' + _category[index].fName,
+                                         child: Material(
+                                           color: Colors.transparent,
+                                           child: Text(
+                                             _category[index].money,
+                                             style: TextStyle(
+                                               fontWeight: FontWeight.bold,
+                                               fontSize: 18
+                                             ),
+                                             overflow: TextOverflow.ellipsis,
+                                           ),
+                                         ),
+                                       ),
+                                     )
+                                   ],
+                                ),
+                              ),
+                              onTap: (){},
+                            );
+                          }
+                        ),
                       )
                     ],
                   ),
